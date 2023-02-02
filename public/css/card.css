@@ -1,0 +1,20 @@
+.card{
+    padding: 5px;
+    margin: 10px;
+    transition: 0.2s;
+    max-width: 100%;
+}
+
+.card-img-top{
+    height: 50%;
+    display: block;
+}
+
+.card .btn{
+    background-color: #DC0000;
+    border: #850000 solid 3px;
+} 
+
+.card:hover{
+    transform: scale(1.02);
+}

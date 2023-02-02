@@ -1,0 +1,124 @@
+form {
+    max-width: 100%;
+    width: 70rem;
+    margin: auto;
+    margin-top: 50px;
+    background-color: #DC0000;
+    padding: 10px;
+    border-radius: 10px;
+    border: #850000 10px solid;
+    box-shadow: 0px 0px 10px black, inset 0 0 30px black;
+}
+
+form .row {
+    margin: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 98%;
+    border-bottom: 1px black solid;
+    text-align: center;
+}
+
+form .row > div{
+    margin-bottom: 10px;
+}
+
+form .last-row {
+    border-bottom: none;
+}
+
+form .dropdown-toggle {
+    background-color: white;
+    color: black;
+    border: #850000 3px solid;
+    width: 100%;
+}
+
+form .dropdown-toggle:hover {
+    background-color: white;
+    color: black;
+    border: #850000 3px solid;
+}
+
+form .btn-check:checked+.btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check)+.btn:active {
+    background-color: white;
+    color: black;
+    border: #850000 3px solid;
+}
+
+form .dropdown-menu {
+    width: 100%;
+}
+
+.form-select {
+    border: #850000 3px solid;
+}
+
+form .btn-search {
+    margin-top: 10px;
+    width: 40%;
+    background-color: #850000;
+    color: #FFDB89;
+    text-shadow: 1px 1px 1px black;
+    font-weight: bold;
+    transition: 0.2s;
+    border: black solid 2px;
+}
+
+form .btn-search:hover {
+    width: 50%;
+    background-color: #850000;
+    color: white;
+    font-weight: bolder;
+    border: black solid 2px;
+}
+
+form small{
+    color:white !important;
+}
+
+.form-label {
+    color: white;
+    vertical-align: middle;
+    margin-bottom: 0px;
+    font-size: min(22px, 4vw);
+    letter-spacing: 4px;
+}
+
+.form-range::-webkit-slider-thumb {
+    background: #850000;
+}
+
+.form-range::-moz-range-thumb {
+    background: #850000;
+}
+
+.form-range::-ms-thumb {
+    background: #850000;
+}
+
+.year-label {
+    margin-top: 15px;
+}
+
+.filter-number {
+    width: 150px;
+    display: inline-block;
+    text-align: center;
+}
+
+.usedError{
+    display: block;
+    background-color: black;
+    padding: 5px;
+    border-radius: 3px;
+    margin: auto;
+    margin-top: 10px;
+    width: 45ex;
+    font-weight: bold;
+    font-size: 2ex;
+}

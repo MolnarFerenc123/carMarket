@@ -1,0 +1,27 @@
+.carousel{
+    outline: #DC0000 solid 5px;
+    margin: auto;
+    width: min(90%, 1000px);
+    height: 100%;
+}
+
+.carousel-caption{
+    text-shadow: 0px 0px 10px black, 0px 0px 10px black;
+}
+
+.carousel-title{
+    background-color: #DC0000;
+    margin: auto;
+    width: calc(min(90%, 1000px) + 10px);
+    margin-top: 50px;
+    color:white;
+    text-align: center;
+    padding: 8px;
+}
+
+.carousel-item{
+}
+
+.carousel-item img{
+    height: 100%;
+}

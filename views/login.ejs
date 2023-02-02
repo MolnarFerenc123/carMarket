@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarMarket</title>
+
+    <link href="/css/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/css/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+
+<body>
+    <%- include('navbar.ejs') %>
+    <div class="flex-wrapper">
+        <form action="/user/login" method="POST">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <label for="make" class="form-label">Bejelentkezés</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 col-md-3">
+                    <label for="make" class="form-label">Felhasználónév:</label>
+                </div>
+                <div class="col-6 col-md-3 col-left">
+                    <input name="username" type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Felhasználónév" required>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label for="model" class="form-label">Jelszó:</label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <input name="password" type="password" class="form-control" id="password" aria-describedby="emailHelp" placeholder="Jelszó" required>
+                </div>
+            </div>
+            <div class="row last-row">
+                <div class="col">
+                    <%if(loginError){%> 
+                        <small>Hibás felhasználónév vagy jelszó</small><br>
+                    <%}%>
+                    <button type="submit" class="btn btn-search">Bejelentkezés</button><br>
+                    <small><a href="/user/registration" class="link-light">Még nem regisztrált?</a></small>
+                </div>
+            </div>
+        </form>
+        <%- include('footer.ejs') %>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+.footer{
+    margin-top: 150px;
+    background-image: linear-gradient( #DC0000,#850000,#850000,#850000);
+    padding: 20px;
+    color: #eee;
+    border-top: solid #151515 3px;
+}
+.footer h4{
+    text-decoration: underline;
+}
+.footer a{
+    text-decoration: none;
+    color: #eee;
+}

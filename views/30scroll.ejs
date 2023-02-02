@@ -1,0 +1,22 @@
+<% list.forEach(function(item, index){ %>
+            <% if(index % 6 == 0){ %>
+                <div class="row">
+            <% } %>
+                    <div class="col-6 col-sm-4">
+                        <div class="card d-flex" style="width:400px">
+                            <img class="card-img-top" src="/src/database/img/<%=item.id%>/<%=item.indexkep%>" alt="<%=item.gyarto%> <%=item.modell%>">
+                            <div class="card-body">
+                                <h4 class="card-title"><%=item.gyarto%> <%=item.modell%></h4>
+                                <ul class="card-text">
+                                    <li>Ár: <b><%=item.ar%> Ft-</b></li>
+                                    <li><b><%=item.km%></b> megtett km</li>
+                                    <li>Évjárat: <b><%=item.ev%></b></li>
+                                </ul>
+                                <a href="#" class="btn btn-primary">Megtekintés</a>
+                            </div>
+                        </div>
+                    </div>
+            <% if(index % 6 == 5 || index == list.length-1){ %>
+                </div>
+            <% } %>
+        <% }); %>

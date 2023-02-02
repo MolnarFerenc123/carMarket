@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarMarket</title>
+
+    <link href="/css/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/css/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/form.css">
+
+    <script src="/js/passwordCheck.js"></script>
+</head>
+
+<body>
+    <%- include('navbar.ejs') %>
+        <div class="flex-wrapper">
+            <form action="/user/registration" method="POST" onsubmit="return checkPassword(this)">
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <label for="make" class="form-label">Regisztráció</label><br>
+                        <%if(usedData){%>
+                            <small class="usedError">Ez a felhasználónév vagy jelszó már foglalt!</small>
+                            <%}%>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <label for="surname" class="form-label">Vezetéknév:</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <input type="text" value="<%=lastname%>" class="form-control" id="lastname"
+                            placeholder="Vezetéknév" name="lastname" required>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="lastname" class="form-label">Keresztnév:</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <input type="text" value="<%=firstname%>" class="form-control" id="lastname"
+                            placeholder="Keresztnév" name="firstname" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <label for="email" class="form-label">Email cím:</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <input type="email" class="form-control" id="email" placeholder="Email cím" name="email"
+                            required>
+                        <small class="form-text">Nem osszuk meg az email címedet senkivel.</small>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="username" class="form-label">Felhasználónév:</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <input type="text" class="form-control" id="username" placeholder="Felhasználónév"
+                            name="username" required>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <label for="password" class="form-label">Jelszó:</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <input type="password" value="<%=password%>" class="form-control" id="password"
+                            placeholder="Jelszó" name="password" required>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="password-again" class="form-label">Jelszó mégegyszer:</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <input type="password" value="<%=passwordAgain%>" class="form-control" id="password-again"
+                            placeholder="Jelszó mégegyszer" name="passwordAgain" required>
+                    </div>
+                </div>
+                <div class="row last-row">
+                    <div class="col">
+                        <div class="form-check text-start w-50 m-0 d-inline-block float-start">
+                            <input type="checkbox" class="form-check-input" id="aszf" name="aszf" required>
+                            <label class="form-check-label text-white" for="aszf">Elolvastam és elfogadom az ÁSZF-et és
+                                az Adatvédelmi tájékoztatót</label>
+                        </div>
+                        <div class="form-check text-start w-50 m-0 float-start">
+                            <input type="checkbox" class="form-check-input" id="letters" name="letters">
+                            <label class="form-check-label text-white" for="letters">Hírlevél feliratkozás</label>
+                        </div><br>
+                        <button type="submit" class="btn btn-search">Regisztráció</button><br>
+                        <small><a href="/user/login" class="link-light">Már regisztrált?</a></small>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <%- include('footer.ejs') %>
+</body>
+
+</html>

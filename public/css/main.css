@@ -1,0 +1,13 @@
+body{
+    background-color: #FFDB89;
+    background-image: url(../src/img/background/background.png);
+    background-repeat: repeat;
+    background-position: 0%;
+    overflow-y: auto;
+}
+.flex-wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+}

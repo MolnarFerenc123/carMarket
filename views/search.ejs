@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarMarket</title>
+
+    <link href="./css/css/bootstrap.min.css" rel="stylesheet">
+    <script src="./css/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+
+<body>
+    <%- include('navbar.ejs') %>
+
+        <div class="flex-wrapper">
+            <form id="searchForm">
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <label for="make" class="form-label">Gyártó:</label>
+                    </div>
+                    <div class="col-6 col-md-3 col-left">
+                        <select class="form-select" id="make" onchange="filterModels(<%=modelsWithMake%>)">
+                            <option value="all" selected>Összes</option>
+                            <% makes.forEach(function(item) { %>
+                                <option value=<%=item.id%>><%=item.gyarto%>
+                                </option>
+                                <% }); %>
+                        </select>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="model" class="form-label">Modell:</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false" disabled>
+                                - Válassz -
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="modelList"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <label for="year" class="form-label year-label">Évjárat:</label>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <input type="range" class="form-range" min="<%=minYear.minEv%>" max="<%=maxYear.maxEv%>"
+                            value="<%=minYear.minEv%>" id="yearStartRange">
+                        <label for="year" class="form-label"><input type="number" class="form-control filter-number"
+                                value="<%=minYear.minEv%>" id="yearStartInput" max="<%=maxYear.maxEv%>"
+                                min="<%=minYear.minEv%>"><span id="yearStartText">
+                                -től</span></label>
+
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <input type="range" class="form-range" min="<%=minYear.minEv%>" max="<%=maxYear.maxEv%>"
+                            value="<%=maxYear.maxEv%>" id="yearEndRange">
+                        <label for="year" class="form-label"><input type="number" class="form-control filter-number"
+                                value="<%=maxYear.maxEv%>" id="yearEndInput" max="<%=maxYear.maxEv%>"
+                                min="<%=minYear.minEv%>"> -ig</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <label for="price" class="form-label year-label">Ár:</label>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <input type="range" class="form-range" min="<%=minPrice.minAr%>" max="<%=maxPrice.maxAr%>"
+                            value="<%=minPrice.minAr%>" step="5000" id="priceStartRange">
+                        <label for="price" class="form-label"><input type="number" class="form-control filter-number"
+                                value="<%=minPrice.minAr%>" id="priceStartInput" max="<%=maxPrice.maxAr%>"
+                                min="<%=minPrice.minAr%>"> Ft-tól</label>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <input type="range" class="form-range" min="<%=minPrice.minAr%>" max="<%=maxPrice.maxAr%>"
+                            value="<%=maxPrice.maxAr%>" step="5000" id="priceEndRange">
+                        <label for="price" class="form-label"><input type="number" class="form-control filter-number"
+                                value="<%=maxPrice.maxAr%>" id="priceEndInput" max="<%=maxPrice.maxAr%>"
+                                min="<%=minPrice.minAr%>"> Ft-ig</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <label for="make" class="form-label">Állapot:</label>
+                    </div>
+                    <div class="col-6 col-md-3 col-left">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                - Válassz -
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <% conditions.forEach(function(item) { %>
+                                    <li>
+                                        <span class="dropdown-item">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="<%=item.id%> name="conditions" />
+                                                <label class="form-check-label">
+                                                    <%=item.allapot%>
+                                                </label>
+                                            </div>
+                                        </span>
+                                    </li>
+                                    <% }); %>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="make" class="form-label">Szín:</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                - Válassz -
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <% colors.forEach(function(item) { %>
+                                    <li>
+                                        <span class="dropdown-item">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="<%=item.id%>" name="color" />
+                                                <label class="form-check-label">
+                                                    <%=item.szin%>
+                                                </label>
+                                            </div>
+                                        </span>
+                                    </li>
+                                    <% }); %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <label for="make" class="form-label">Üzemanyag:</label>
+                    </div>
+                    <div class="col-6 col-md-3 col-left">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                - Válassz -
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <% fuels.forEach(function(item) { %>
+                                    <li>
+                                        <span class="dropdown-item">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="<%=item.id%>" name="fuel" />
+                                                <label class="form-check-label">
+                                                    <%=item.uzemanyag%>
+                                                </label>
+                                            </div>
+                                        </span>
+                                    </li>
+                                    <% }); %>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="make" class="form-label">Kivitel:</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                - Válassz -
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <% types.forEach(function(item) { %>
+                                    <li>
+                                        <span class="dropdown-item">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="<%=item.id%>" name="type"/>
+                                                <label class="form-check-label">
+                                                    <%=item.kivitel%>
+                                                </label>
+                                            </div>
+                                        </span>
+                                    </li>
+                                    <% }); %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <label for="make" class="form-label">Váltó:</label>
+                    </div>
+                    <div class="col-6 col-md-3 col-left">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                - Válassz -
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <% transmissions.forEach(function(item) { %>
+                                    <li>
+                                        <span class="dropdown-item">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="<%=item.id%>" name="transmission" />
+                                                <label class="form-check-label">
+                                                    <%=item.valto%>
+                                                </label>
+                                            </div>
+                                        </span>
+                                    </li>
+                                    <% }); %>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="make" class="form-label">Meghajtás:</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                - Válassz -
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <% drives.forEach(function(item) { %>
+                                    <li>
+                                        <span class="dropdown-item">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="<%=item.id%>" name="drive" />
+                                                <label class="form-check-label">
+                                                    <%=item.meghajtas%>
+                                                </label>
+                                            </div>
+                                        </span>
+                                    </li>
+                                    <% }); %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row last-row">
+                    <div class="col">
+                        <button type="button" class="btn btn-search" id="searchButton">Keresés</button>
+                    </div>
+                </div>
+            </form>
+            <%- include('footer.ejs') %>
+        </div>
+</body>
+<script src="../js/script.js"></script>
+<script src="../js/model.js"></script>
+<script src="../js/search.js"></script>
+</html>

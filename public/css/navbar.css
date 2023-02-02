@@ -1,0 +1,19 @@
+.navbar{
+    background-image: linear-gradient( #DC0000,#850000,#850000,#850000);
+    box-shadow: 0 0 10px black;
+}
+.nav-link{
+    color: white;
+}
+.nav-link:hover{
+    color: #FFF6C3;
+}
+.active{
+    color: White !important;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+.img-logo{
+    width: 200px;
+    margin-left: 20px;
+}

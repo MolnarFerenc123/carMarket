@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarMarket</title>
+
+    <link href="./css/css/bootstrap.min.css" rel="stylesheet">
+    <script src="./css/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/card.css">
+</head>
+
+<body>
+    <%- include('navbar.ejs') %>
+
+    <div class="flex-wrapper">
+        <div class="container" id="hely">
+    
+        </div>
+        <%- include('footer.ejs') %>
+    </div>
+</body>
+
+<script>
+    let elemdb = <%=list[0].elemdb %>;
+</script>
+<script type="text/javascript" src="/js/scroll.js"></script>
+<script>
+    appendContent(currentPage);
+</script>
+
+</html>
