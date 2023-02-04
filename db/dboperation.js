@@ -25,6 +25,17 @@ async function SelectAll() {
     });
 };
 
+async function SelectOne(carId) {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM alldata WHERE id = ? ORDER BY gyarto, modell, ev',[carId], (error, elements) => {
+            if (error) {
+                return reject(error);
+            }
+            return resolve(elements);
+        });
+    });
+};
+
 async function SelectAllSpecial() {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM kulonleges', (error, elements) => {
@@ -283,6 +294,7 @@ module.exports = {
     SelectAllMake: SelectAllMake,
     SelectAllCondition: SelectAllCondition,
     SelectAll: SelectAll,
+    SelectOne: SelectOne,
     Select30: Select30,
     CountElements: CountElements,
     SelectAllColor: SelectAllColor,

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarMarket</title>
+
+    <link href="/bs/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/bs/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/car.css">
+</head>
+
+<body>
+    <%- include('navbar.ejs') %>
+
+        <div class="flex-wrapper">
+            <div class="container w-100 ms-0 me-0">
+                <div class="row">
+                    <div class="col-12 col-md-7">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <%images.forEach(function(item,index){%>
+                                    <%if(index==0){%>
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%=index%>"
+                                    class="active" aria-current="true" aria-label="Slide <%=index%>"></button>
+                                        <%}else{%>
+                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%=index%>"
+                                    aria-label="Slide <%=index%>"></button>
+                                            <%}%>
+                                                <%});%>
+                            </div>
+                            <div class="carousel-inner">
+                                <%images.forEach(function(item,index){%>
+                                    <%if(index==0){%>
+                                        <div class="carousel-item active">
+                                            <img src="/src/database/img/<%=list[0].id%>/<%=item%>" class="d-block w-100" alt="...">
+                                        </div>
+                                        <%}else{%>
+                                            <div class="carousel-item">
+                                                <img src="/src/database/img/<%=list[0].id%>/<%=item%>" class="d-block w-100" alt="...">
+                                            </div>
+                                            <%}%>
+                                                <%});%>
+                            </div>
+                            <button class="carousel-control-prev" type="button"
+                                data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button"
+                                data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-5">
+                        <div class="description">
+                            <div class="description-title">
+                                <h1><%=list[0].gyarto%> <%=list[0].modell%></h1>
+                            </div>
+                            <div class="description-body">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>Árak</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <ul>
+                                                <li>Ár:</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6"><b><%=list[0].ar%> Ft</b></div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>Általános adatok</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <ul>
+                                                <li>Évjárat:</li>
+                                                <li>Állapot:</li>
+                                                <li>Kivitel:</li>
+                                                <li>Alvázszám:</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6">
+                                            <b><%=list[0].ev%></b><br>
+                                            <b><%=list[0].allapot%></b><br>
+                                            <b><%=list[0].kivitel%></b><br>
+                                            <b><%=list[0].alvaz%></b>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>Jármú adatok</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <ul>
+                                                <li>Megtett km:</li>
+                                                <li>Szín:</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6">
+                                            <b><%=list[0].km%> km</b><br>
+                                            <b><%=list[0].szin%></b>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-12"><h4>Motor adatok</h4></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <ul>
+                                                <li>Üzemanyag:</li>
+                                                <li>Hengerfejek száma:</li>
+                                                <li>Hajtás:</li>
+                                                <li>Sebességváltó:</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6">
+                                            <b><%=list[0].uzemanyag%></b><br>
+                                            <b><%=list[0].hengerfej%></b><br>
+                                            <b><%=list[0].meghajtas%></b><br>
+                                            <b><%=list[0].valto%></b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+
+                    </div>
+                </div>
+            </div>
+            <%- include('footer.ejs') %>
+        </div>
+</body>
+
+</html>

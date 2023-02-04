@@ -148,4 +148,34 @@ router.post('/search', async (req, res, next) => {
   }
 });
 
+router.get('/car/:id', async (req, res, next) => {
+  try {
+    let files;
+    let images = [];
+    let carId = req.params.id;
+    allPage = "";
+    searchPage = "";
+    loginPage = "";
+    if (req.session.user_id) {
+      loggedIn = true;
+      userName = req.session.name;
+    } else {
+      loggedIn = false;
+    }
+    const car = await Db.SelectOne(carId);
+    if(car.length > 0){
+      files = fs.readdirSync(path.join(__dirname, '../public/src/database/img/'+car[0].id));
+      for(let j = 0; j < files.length; j++) {
+        if(!files[j].startsWith("index")){
+          images.push(files[j]);
+        }
+      }
+    }
+    res.render('car', {list : car, images : images, loggedIn: loggedIn, userName: userName, allPage: allPage, searchPage: searchPage, loginPage: loginPage });
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+});
+
 module.exports = router;
