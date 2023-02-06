@@ -1,4 +1,5 @@
 const submit = document.getElementById('searchButton');
+const datadiv = document.getElementById('data');
 submit.addEventListener('click', () => {
     let modelCheckboxes = document.getElementsByName('model');
     let conditionCheckboxes = document.getElementsByName('conditions');
@@ -16,8 +17,8 @@ submit.addEventListener('click', () => {
     let types = [];
     let transmissions = [];
     let drives = [];
-    let years  = [document.getElementById('yearStartInput').value, document.getElementById('yearEndInput').value];
-    let prices  = [document.getElementById('priceStartInput').value, document.getElementById('priceEndInput').value];
+    let years = [document.getElementById('yearStartInput').value, document.getElementById('yearEndInput').value];
+    let prices = [document.getElementById('priceStartInput').value, document.getElementById('priceEndInput').value];
     modelCheckboxes.forEach(element => {
         if (element.checked) {
             models.push(element.value);
@@ -56,14 +57,13 @@ submit.addEventListener('click', () => {
     fetch('/search', {
         method: "POST",
         headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
         },
         body: JSON.stringify({
             make: make,
             models: models,
-            years : years,
-            prices : prices,
+            years: years,
+            prices: prices,
             conditions: conditions,
             colors: colors,
             fuels: fuels,
@@ -72,6 +72,8 @@ submit.addEventListener('click', () => {
             drives: drives
         }),
     })
+        .then(result => result.text())
+        .then(result => datadiv.innerHTML = result)
         .catch((err) => {
             console.log(err);
         });

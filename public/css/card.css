@@ -6,8 +6,7 @@
 }
 
 .card-img-top{
-    height: 260px;
-    width: 380px;
+    max-height: 260px;
     display: block;
 }
 

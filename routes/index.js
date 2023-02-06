@@ -100,6 +100,7 @@ router.get('/autok', async (req, res, next) => {
 
 router.get('/search', async (req, res, next) => {
   try {
+    
     allPage = "";
     searchPage = "active";
     loginPage = "";
@@ -130,6 +131,9 @@ router.get('/search', async (req, res, next) => {
 
 router.post('/search', async (req, res, next) => {
   try {
+    let files;
+    let okindex;
+    
     let make = req.body.make;
     let models = req.body.models;
     let years = req.body.years;
@@ -141,7 +145,17 @@ router.post('/search', async (req, res, next) => {
     let transmissions = req.body.transmissions;
     let drives = req.body.drives;
     const cars = await Db.Filter(make, models, years, prices, conditions, colors, fuels, types, transmissions, drives);
-    console.log(cars);
+    for(let i = 0; i < cars.length; i++) {
+      files = fs.readdirSync(path.join(__dirname, '../public/src/database/img/'+cars[i].id));
+      for(let j = 0; j < files.length; j++) {
+        if(files[j].startsWith("index")){
+          okindex = j;
+        }
+      }
+      files = files.slice(okindex,okindex+1);
+      cars[i].indexkep = files[0];
+    }
+    res.render('30scroll', { list: cars });
   } catch (e) {
     console.log(e);
     res.sendStatus(500);

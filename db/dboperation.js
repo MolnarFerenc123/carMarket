@@ -234,7 +234,7 @@ async function Filter(make, models, years, prices, conditions, colors, fuels, ty
     return new Promise((resolve, reject) => {
         let toCheck = [];
         let sql = `SELECT
-        a.id AS id, gy.gyarto AS gyarto, a.modell AS modell, a.ev AS ev, a.ar AS ar, al.allapot AS allapot, sz.szin AS szin, a.hengerfej AS hengerfej, u.uzemanyag AS uzemanyag, a.km AS km, v.valto AS valto, a.alvaz AS alvaz, m.meghajtas AS meghajtas, k.kivitel AS kivitel, a.kep AS indexkep
+        a.id AS id, gy.gyarto AS gyarto, a.modell AS modell, a.ev AS ev, a.ar AS ar, al.allapot AS allapot, sz.szin AS szin, a.hengerfej AS hengerfej, u.uzemanyag AS uzemanyag, a.km AS km, v.valto AS valto, a.alvaz AS alvaz, m.meghajtas AS meghajtas, k.kivitel AS kivitel
       FROM auto a, allapot al, gyarto gy, kivitel k, meghajtas m, szin sz, uzemanyag u, valto v
       WHERE a.gyartoid = gy.id AND a.allapotid = al.id AND a.szinid = sz.id AND a.uzemanyagid = u.id AND a.valtoid = v.id AND a.meghajtasid = m.id AND a.kivitelid = k.id`;
         if (make != "all") {
@@ -275,7 +275,7 @@ async function Filter(make, models, years, prices, conditions, colors, fuels, ty
             sql += ` AND m.id IN (?)`
             toCheck.push(drives);
         }
-        sql += ';';
+        sql += ' ORDER BY gy.gyarto, a.modell, a.ev;';
         pool.query(sql, toCheck,
             (error, elements) => {
                 if (error) {
