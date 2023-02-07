@@ -122,3 +122,7 @@ form small{
     font-weight: bold;
     font-size: 2ex;
 }
+
+.mt-20{
+    margin-top: 150px;
+}

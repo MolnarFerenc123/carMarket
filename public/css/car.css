@@ -35,7 +35,7 @@
     }
     .description{
         width: 95%;
-        height: 700px;
+        height: 750px;
         background-color: rgba(255,255,255, 0.4);
         margin: 20px;
     }
@@ -73,4 +73,22 @@
     text-align: center;
     background-color: rgba(255,255,255, 0.6);
     padding: 5px;
+}
+
+.button-div{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.favourites-button{
+    background-color: #850000;
+    color: white;
+    border: none;
+    padding: 4px 30px;
+    transition: 0.3s;
+}
+.favourites-button:hover{
+    transform: scale(1.2);
+    font-weight: bold;
+    padding: 4px 50px;
 }

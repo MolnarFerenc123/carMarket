@@ -7,7 +7,6 @@ var fs = require('fs');
 var Db = require('../db/dboperation');
 
 var verify = require("../middleware/verifyModule");
-const { start } = require('repl');
 
 let loggedIn = false;
 let userName = "";
@@ -35,17 +34,17 @@ router.get('/', async (req, res, next) => {
       pageNo = 0;
     }
     const specials = await Db.SelectAllSpecial();
-    for(let i = 0; i < specials.length; i++) {
-      files = fs.readdirSync(path.join(__dirname, '../public/src/database/img/'+specials[i].id));
-      for(let j = 0; j < files.length; j++) {
-        if(files[j].startsWith("1")){
+    for (let i = 0; i < specials.length; i++) {
+      files = fs.readdirSync(path.join(__dirname, '../public/src/database/img/' + specials[i].id));
+      for (let j = 0; j < files.length; j++) {
+        if (files[j].startsWith("1")) {
           okindex = j;
         }
       }
-      files = files.slice(okindex,okindex+1);
+      files = files.slice(okindex, okindex + 1);
       specials[i].indexkep = files[0];
     }
-    
+
     res.render('index', { specials: specials, loggedIn: loggedIn, userName: userName, allPage: allPage, searchPage: searchPage, loginPage: loginPage }); // template
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
@@ -62,14 +61,14 @@ router.get('/autok/:page', async (req, res, next) => {
       pageNo = 0;
     }
     const resultElements = await Db.Select30(pageNo);
-    for(let i = 0; i < resultElements.length; i++) {
-      files = fs.readdirSync(path.join(__dirname, '../public/src/database/img/'+resultElements[i].id));
-      for(let j = 0; j < files.length; j++) {
-        if(files[j].startsWith("index")){
+    for (let i = 0; i < resultElements.length; i++) {
+      files = fs.readdirSync(path.join(__dirname, '../public/src/database/img/' + resultElements[i].id));
+      for (let j = 0; j < files.length; j++) {
+        if (files[j].startsWith("index")) {
           okindex = j;
         }
       }
-      files = files.slice(okindex,okindex+1);
+      files = files.slice(okindex, okindex + 1);
       resultElements[i].indexkep = files[0];
     }
     res.render('30scroll', { list: resultElements }); // template
@@ -81,6 +80,7 @@ router.get('/autok/:page', async (req, res, next) => {
 
 router.get('/autok', async (req, res, next) => {
   try {
+    req.session.previousURL = "/autok";
     allPage = "active";
     searchPage = "";
     loginPage = "";
@@ -98,9 +98,11 @@ router.get('/autok', async (req, res, next) => {
   }
 });
 
+
+
 router.get('/search', async (req, res, next) => {
   try {
-    
+    req.session.previousURL = "/search";
     allPage = "";
     searchPage = "active";
     loginPage = "";
@@ -133,7 +135,7 @@ router.post('/search', async (req, res, next) => {
   try {
     let files;
     let okindex;
-    
+
     let make = req.body.make;
     let models = req.body.models;
     let years = req.body.years;
@@ -145,14 +147,14 @@ router.post('/search', async (req, res, next) => {
     let transmissions = req.body.transmissions;
     let drives = req.body.drives;
     const cars = await Db.Filter(make, models, years, prices, conditions, colors, fuels, types, transmissions, drives);
-    for(let i = 0; i < cars.length; i++) {
-      files = fs.readdirSync(path.join(__dirname, '../public/src/database/img/'+cars[i].id));
-      for(let j = 0; j < files.length; j++) {
-        if(files[j].startsWith("index")){
+    for (let i = 0; i < cars.length; i++) {
+      files = fs.readdirSync(path.join(__dirname, '../public/src/database/img/' + cars[i].id));
+      for (let j = 0; j < files.length; j++) {
+        if (files[j].startsWith("index")) {
           okindex = j;
         }
       }
-      files = files.slice(okindex,okindex+1);
+      files = files.slice(okindex, okindex + 1);
       cars[i].indexkep = files[0];
     }
     res.render('30scroll', { list: cars });
@@ -162,30 +164,75 @@ router.post('/search', async (req, res, next) => {
   }
 });
 
+router.post('/addFavourite', async (req, res, next) => {
+  try {
+    if (req.session.user_id) {
+      loggedIn = true;
+      userName = req.session.name;
+      await Db.NewFavorite(req.session.user_id, req.body.carId);
+      res.redirect(req.session.previousURL);
+    } else {
+      loggedIn = false;
+      req.session.previousURL = ("/car/" + req.body.carId)
+      res.redirect("/user/login");
+    } 
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+});
+
+router.post('/removeFavourite', async (req, res, next) => {
+  try {
+    if (req.session.user_id) {
+      loggedIn = true;
+      userName = req.session.name;
+      await Db.RemoveFavorite(req.session.user_id, req.body.carId);
+      res.redirect("/user/favourites");
+    } else {
+      loggedIn = false;
+      req.session.previousURL = ("/car/" + req.body.carId)
+      res.redirect("/user/login");
+    }
+
+
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+});
+
 router.get('/car/:id', async (req, res, next) => {
   try {
+    req.session.previousURL = "/car/" + req.params.id;
     let files;
     let images = [];
     let carId = req.params.id;
+    let favourite = false;
     allPage = "";
     searchPage = "";
     loginPage = "";
     if (req.session.user_id) {
       loggedIn = true;
       userName = req.session.name;
+      const checkFavourite = await Db.CheckFavorite(req.session.user_id, carId);
+      if(checkFavourite.length > 0){
+        favourite = true;
+      }
     } else {
       loggedIn = false;
     }
     const car = await Db.SelectOne(carId);
-    if(car.length > 0){
-      files = fs.readdirSync(path.join(__dirname, '../public/src/database/img/'+car[0].id));
-      for(let j = 0; j < files.length; j++) {
-        if(!files[j].startsWith("index")){
+    if (car.length > 0) {
+      files = fs.readdirSync(path.join(__dirname, '../public/src/database/img/' + car[0].id));
+      for (let j = 0; j < files.length; j++) {
+        if (!files[j].startsWith("index")) {
           images.push(files[j]);
         }
       }
     }
-    res.render('car', {list : car, images : images, loggedIn: loggedIn, userName: userName, allPage: allPage, searchPage: searchPage, loginPage: loginPage });
+    
+    res.render('car', { list: car, images: images, loggedIn: loggedIn, userName: userName, allPage: allPage, searchPage: searchPage, loginPage: loginPage, favourite : favourite });
   } catch (e) {
     console.log(e);
     res.sendStatus(500);

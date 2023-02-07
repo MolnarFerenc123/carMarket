@@ -230,6 +230,54 @@ async function CheckUsed(username, email) {
     });
 };
 
+async function NewFavorite(userId, carId) {
+    return new Promise((resolve, reject) => {
+        pool.query(`INSERT INTO favorites(userId, carId) VALUES (?, ?)`,[userId, carId], (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            });
+    });
+};
+
+async function RemoveFavorite(userId, carId) {
+    return new Promise((resolve, reject) => {
+        pool.query(`DELETE FROM favorites WHERE userId = ? AND carId = ?`,[userId, carId], (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            });
+    });
+};
+
+
+async function Favorites(userId) {
+    return new Promise((resolve, reject) => {
+        pool.query(`SELECT a.id, a.gyarto, a.modell, a.ar, a.km, a.ev FROM alldata a, favorites f, users u
+        WHERE u.id = f.userId AND f.carId = a.id
+        AND u.id = ? ORDER BY a.gyarto, a.modell, a.ev`,userId, (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            });
+    });
+};
+
+async function CheckFavorite(userId,carId) {
+    return new Promise((resolve, reject) => {
+        pool.query(`SELECT * FROM favorites f
+        WHERE f.userId = ? AND f.carId = ?`,[userId,carId], (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            });
+    });
+};
+
 async function Filter(make, models, years, prices, conditions, colors, fuels, types, transmissions, drives) {
     return new Promise((resolve, reject) => {
         let toCheck = [];
@@ -307,5 +355,9 @@ module.exports = {
     NewUser: NewUser,
     VerifyUser: VerifyUser,
     CheckUsed: CheckUsed,
-    Filter: Filter
+    Filter: Filter,
+    NewFavorite : NewFavorite,
+    Favorites : Favorites,
+    CheckFavorite : CheckFavorite,
+    RemoveFavorite: RemoveFavorite
 }

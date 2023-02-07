@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarMarket</title>
+
+    <link href="/bs/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/bs/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/card.css">
+</head>
+
+<body>
+    <%- include('navbar.ejs') %>
+
+    <div class="flex-wrapper">
+        <div class="container">
+            <% list.forEach(function(item, index){ %>
+                <% if(index % 6 == 0){ %>
+                    <div class="row">
+                <% } %>
+                        <div class="col-6 col-sm-4">
+                            <div class="card d-flex" style="width:400px">
+                                <img class="card-img-top" src="/src/database/img/<%=item.id%>/<%=item.indexkep%>" alt="<%=item.gyarto%> <%=item.modell%>" width="">
+                                <div class="card-body">
+                                    <h4 class="card-title"><%=item.gyarto%> <%=item.modell%></h4>
+                                    <ul class="card-text">
+                                        <li>Ár: <b><%=item.ar%> Ft-</b></li>
+                                        <li><b><%=item.km%></b> megtett km</li>
+                                        <li>Évjárat: <b><%=item.ev%></b></li>
+                                    </ul>
+                                    <a href="/car/<%=item.id%>" class="btn btn-primary">Megtekintés</a>
+                                </div>
+                            </div>
+                        </div>
+                <% if(index % 6 == 5 || index == list.length-1){ %>
+                    </div>
+                <% } %>
+            <% }); %>
+        </div>
+        <%- include('footer.ejs') %>
+    </div>
+</body>
+</html>
