@@ -15,6 +15,20 @@ let allPage = "";
 let searchPage = "";
 let loginPage = "";
 
+function stringToMoney(raw){
+  raw = raw.toString();
+  let money = "";
+  let count = 0;
+  for(let i = raw.length - 1; i >= 0; i--){
+      if(count % 3 === 0 && count!== 0){
+          money = " " + money;
+      }
+      money = raw.charAt(i) + money;
+      count++;
+  }
+  return money;
+}
+
 /* GET home page. */
 router.get('/', async (req, res, next) => {
   try {
@@ -70,6 +84,7 @@ router.get('/autok/:page', async (req, res, next) => {
       }
       files = files.slice(okindex, okindex + 1);
       resultElements[i].indexkep = files[0];
+      resultElements[i].ar = stringToMoney(resultElements[i].ar);
     }
     res.render('30scroll', { list: resultElements }); // template
   } catch (e) {
@@ -156,6 +171,7 @@ router.post('/search', async (req, res, next) => {
       }
       files = files.slice(okindex, okindex + 1);
       cars[i].indexkep = files[0];
+      cars[i].ar = stringToMoney(cars[i].ar);
     }
     res.render('30scroll', { list: cars });
   } catch (e) {
@@ -231,7 +247,7 @@ router.get('/car/:id', async (req, res, next) => {
         }
       }
     }
-    
+    car[0].ar = stringToMoney(car[0].ar);
     res.render('car', { list: car, images: images, loggedIn: loggedIn, userName: userName, allPage: allPage, searchPage: searchPage, loginPage: loginPage, favourite : favourite });
   } catch (e) {
     console.log(e);

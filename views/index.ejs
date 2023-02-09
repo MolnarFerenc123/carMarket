@@ -47,8 +47,10 @@
                         <%}else{%>
                             <div class="carousel-item">
                                 <%}%>
-                                    <img src="/src/database/img/<%=item.id%>/1.jpg"
-                                        alt="<%=item.gyarto%> <%=item.modell%>" class="d-block w-100 img-fluid">
+                                    <a href="/car/<%=item.id%>">
+                                        <img src="/src/database/img/<%=item.id%>/1.jpg"
+                                            alt="<%=item.gyarto%> <%=item.modell%>" class="d-block w-100 img-fluid">
+                                    </a>
                                     <div class="carousel-caption">
                                         <h3>
                                             <%=item.gyarto%>
