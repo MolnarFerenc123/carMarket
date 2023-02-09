@@ -255,9 +255,9 @@ async function RemoveFavorite(userId, carId) {
 
 async function Favorites(userId) {
     return new Promise((resolve, reject) => {
-        pool.query(`SELECT a.id, a.gyarto, a.modell, a.ar, a.km, a.ev FROM alldata a, favorites f, users u
-        WHERE u.id = f.userId AND f.carId = a.id
-        AND u.id = ? ORDER BY a.gyarto, a.modell, a.ev`,userId, (error, elements) => {
+        pool.query(`SELECT a.id, a.gyarto, a.modell, a.ar, a.km, a.ev FROM alldata a, favorites f
+        WHERE f.carId = a.id
+        AND f.userId = ? ORDER BY a.gyarto, a.modell, a.ev`,userId, (error, elements) => {
                 if (error) {
                     return reject(error);
                 }
