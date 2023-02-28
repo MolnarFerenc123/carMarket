@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('icon.ejs') %>
+        <title>CarMarket</title>
+
+        <link href="/bs/css/bootstrap.min.css" rel="stylesheet">
+        <script src="/bs/js/bootstrap.bundle.min.js"></script>
+
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/footer.css">
+        <link rel="stylesheet" href="/css/profileCard.css">
+        <link rel="stylesheet" href="/css/navbar.css">
+</head>
+
+<body>
+    <%- include('navbar.ejs') %>
+        <div class="flex-wrapper">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><%=list[0].name%></h5>
+                  <h6 class="card-subtitle mb-2 text-muted"><%=list[0].username%></h6>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>E-mail cím:</b> <%=list[0].email%></li>
+                    <li class="list-group-item"><b>Létrehozás dátuma:</b> <%=list[0].createdate%></li>
+                    <li class="list-group-item"><b>Hírlevél:</b> 
+                        <%if(list[0].hirlevel == 1){%>
+                            ✔
+                        <%}else{%>
+                            ✖
+                        <%}%>
+                        </li>
+                  </ul>
+                  <a href="/user/edit" class="btn btn-primary mt-2">Adatok módosítása</a>
+                </div>
+              </div>
+            </div>
+            <%- include('footer.ejs') %>
+        </div>
+</body>
+
+</html>

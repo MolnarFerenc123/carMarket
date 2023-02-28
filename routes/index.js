@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var multer = require('multer');  // file feltöltéshez
 var path = require('path');      // útvonalhoz
 var fs = require('fs');
 
@@ -10,6 +9,7 @@ var verify = require("../middleware/verifyModule");
 
 let loggedIn = false;
 let userName = "";
+let permission = 0;
 
 let allPage = "";
 let searchPage = "";
@@ -38,6 +38,7 @@ router.get('/', async (req, res, next) => {
     if (req.session.user_id) {
       loggedIn = true;
       userName = req.session.name;
+      permission = req.session.jog;
     } else {
       loggedIn = false;
     }
@@ -59,7 +60,7 @@ router.get('/', async (req, res, next) => {
       specials[i].indexkep = files[0];
     }
 
-    res.render('index', { specials: specials, loggedIn: loggedIn, userName: userName, allPage: allPage, searchPage: searchPage, loginPage: loginPage }); // template
+    res.render('index', { specials: specials, loggedIn: loggedIn, permission : permission, userName: userName, allPage: allPage, searchPage: searchPage, loginPage: loginPage }); // template
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
     res.sendStatus(500);
@@ -102,11 +103,12 @@ router.get('/autok', async (req, res, next) => {
     if (req.session.user_id) {
       loggedIn = true;
       userName = req.session.name;
+      permission = req.session.jog;
     } else {
       loggedIn = false;
     }
     const resultElements = await Db.CountElements();
-    res.render('allList', { list: resultElements, loggedIn: loggedIn, userName: userName, allPage: allPage, searchPage: searchPage, loginPage: loginPage }); // template
+    res.render('allList', { list: resultElements, loggedIn: loggedIn, permission : permission, userName: userName, allPage: allPage, searchPage: searchPage, loginPage: loginPage }); // template
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
     res.sendStatus(500);
@@ -124,6 +126,7 @@ router.get('/search', async (req, res, next) => {
     if (req.session.user_id) {
       loggedIn = true;
       userName = req.session.name;
+      permission = req.session.jog;
     } else {
       loggedIn = false;
     }
@@ -131,7 +134,6 @@ router.get('/search', async (req, res, next) => {
     let modelsWithMake = JSON.stringify(await Db.SelectModelByMake());
     const minYear = await Db.SelectMinYear();
     const maxYear = await Db.SelectMaxYear();
-    const minPrice = await Db.SelectMinPrice();
     const maxPrice = await Db.SelectMaxPrice();
     const types = await Db.SelectAllType();
     const colors = await Db.SelectAllColor();
@@ -139,7 +141,7 @@ router.get('/search', async (req, res, next) => {
     const conditions = await Db.SelectAllCondition();
     const transmissions = await Db.SelectAllTransmission();
     const drives = await Db.SelectAllDrive();
-    res.render('search', { makes: makes, modelsWithMake: modelsWithMake, minYear: minYear[0], maxYear: maxYear[0], minPrice: minPrice[0], maxPrice: maxPrice[0], types: types, colors: colors, fuels: fuels, conditions: conditions, transmissions: transmissions, drives: drives, loggedIn: loggedIn, userName: userName, allPage: allPage, searchPage: searchPage, loginPage: loginPage });
+    res.render('search', { makes: makes, modelsWithMake: modelsWithMake, minYear: minYear[0], maxYear: maxYear[0], maxPrice: maxPrice[0], types: types, colors: colors, fuels: fuels, conditions: conditions, transmissions: transmissions, drives: drives, loggedIn: loggedIn, permission : permission, userName: userName, allPage: allPage, searchPage: searchPage, loginPage: loginPage });
   } catch (e) {
     console.log(e);
     res.sendStatus(500);
@@ -203,6 +205,7 @@ router.post('/removeFavourite', async (req, res, next) => {
     if (req.session.user_id) {
       loggedIn = true;
       userName = req.session.name;
+      permission = req.session.jog;
       await Db.RemoveFavorite(req.session.user_id, req.body.carId);
       res.redirect("/user/favourites");
     } else {
@@ -231,6 +234,7 @@ router.get('/car/:id', async (req, res, next) => {
     if (req.session.user_id) {
       loggedIn = true;
       userName = req.session.name;
+      permission = req.session.jog;
       const checkFavourite = await Db.CheckFavorite(req.session.user_id, carId);
       if(checkFavourite.length > 0){
         favourite = true;
@@ -248,7 +252,7 @@ router.get('/car/:id', async (req, res, next) => {
       }
     }
     car[0].ar = stringToMoney(car[0].ar);
-    res.render('car', { list: car, images: images, loggedIn: loggedIn, userName: userName, allPage: allPage, searchPage: searchPage, loginPage: loginPage, favourite : favourite });
+    res.render('car', { list: car, images: images, loggedIn: loggedIn, permission : permission, userName: userName, allPage: allPage, searchPage: searchPage, loginPage: loginPage, favourite : favourite });
   } catch (e) {
     console.log(e);
     res.sendStatus(500);

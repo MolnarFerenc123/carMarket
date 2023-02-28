@@ -1,0 +1,12 @@
+.orderingWrapper{
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    width: auto;
+    max-width: 400px;
+    display: inline-block;
+}
+.orderingWrapper > label{
+    font-weight: bold;
+    margin-bottom: 10px;
+}

@@ -6,74 +6,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('icon.ejs') %>
-    <title>CarMarket</title>
+        <title>CarMarket</title>
 
-    <link href="/bs/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/bs/js/bootstrap.bundle.min.js"></script>
+        <link href="/bs/css/bootstrap.min.css" rel="stylesheet">
+        <script src="/bs/js/bootstrap.bundle.min.js"></script>
 
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/carousel.css">
-    <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="/css/navbar.css">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/carousel.css">
+        <link rel="stylesheet" href="/css/footer.css">
+        <link rel="stylesheet" href="/css/navbar.css">
 </head>
 
 <body>
     <%- include('navbar.ejs') %>
+        <div class="flex-wrapper">
+            <!-- Carousel -->
+            <div class="carousel-title">
+                <h1>
+                    Különleges ajánlataink
+                </h1>
+            </div>
+            <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
-    <!-- Carousel -->
-    <div class="carousel-title">
-        <h1>
-            Különleges ajánlataink
-        </h1>
-    </div>
-    <div id="demo" class="carousel slide" data-bs-ride="carousel">
-
-        <!-- Indicators/dots -->
-        <div class="carousel-indicators">
-            <%specials.forEach(function(item,index){%>
-                <%if(index==0){%>
-                    <button type="button" data-bs-target="#demo" data-bs-slide-to="<%=index%>" class="active"></button>
-                    <%}else{%>
-                        <button type="button" data-bs-target="#demo" data-bs-slide-to="<%=index%>"></button>
-                        <%}%>
-                            <%});%>
-        </div>
-
-        <!-- The slideshow/carousel -->
-        <div class="carousel-inner">
-            <%specials.forEach(function(item, index){%>
-                <%if(index==0){%>
-                    <div class="carousel-item active">
-                        <%}else{%>
-                            <div class="carousel-item">
+                <!-- Indicators/dots -->
+                <div class="carousel-indicators">
+                    <%specials.forEach(function(item,index){%>
+                        <%if(index==0){%>
+                            <button type="button" data-bs-target="#demo" data-bs-slide-to="<%=index%>"
+                                class="active"></button>
+                            <%}else{%>
+                                <button type="button" data-bs-target="#demo" data-bs-slide-to="<%=index%>"></button>
                                 <%}%>
-                                    <a href="/car/<%=item.id%>">
-                                        <img src="/src/database/img/<%=item.id%>/1.jpg"
-                                            alt="<%=item.gyarto%> <%=item.modell%>" class="d-block w-100 img-fluid">
-                                    </a>
-                                    <div class="carousel-caption">
-                                        <h3>
-                                            <%=item.gyarto%>
-                                                <%=item.modell%>
-                                                    <%=item.ev%>
-                                        </h3>
-                                        <p class="d-none d-md-block">
-                                            <%=item.text%>
-                                        </p>
-                                    </div>
-                            </div>
-                            <%});%>
-                    </div>
+                                    <%});%>
+                </div>
 
-                    <!-- Left and right controls/icons -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </button>
-        </div>
-        <%- include('footer.ejs') %>
+                <!-- The slideshow/carousel -->
+                <div class="carousel-inner">
+                    <%specials.forEach(function(item, index){%>
+                        <%if(index==0){%>
+                            <div class="carousel-item active">
+                                <%}else{%>
+                                    <div class="carousel-item">
+                                        <%}%>
+                                            <a href="/car/<%=item.id%>">
+                                                <img src="/src/database/img/<%=item.id%>/1.jpg"
+                                                    alt="<%=item.gyarto%> <%=item.modell%>"
+                                                    class="d-block w-100 img-fluid">
+                                            </a>
+                                            <div class="carousel-caption">
+                                                <h3>
+                                                    <%=item.gyarto%>
+                                                        <%=item.modell%>
+                                                            <%=item.ev%>
+                                                </h3>
+                                                <p class="d-none d-md-block">
+                                                    <%=item.text%>
+                                                </p>
+                                            </div>
+                                    </div>
+                                    <%});%>
+                            </div>
+
+                            <!-- Left and right controls/icons -->
+                            <button class="carousel-control-prev" type="button" data-bs-target="#demo"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon"></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#demo"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </button>
+                </div>
+                <%- include('footer.ejs') %>
+            </div>
 </body>
 
 </html>

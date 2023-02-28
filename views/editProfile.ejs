@@ -26,9 +26,6 @@
                 <div class="row">
                     <div class="col-12 col-md-12">
                         <label for="make" class="form-label">Regisztráció</label><br>
-                        <%if(usedData){%>
-                            <small class="usedError">Ez a felhasználónév vagy jelszó már foglalt!</small>
-                            <%}%>
                     </div>
                 </div>
                 <div class="row">
@@ -52,7 +49,7 @@
                         <label for="email" class="form-label">Email cím:</label>
                     </div>
                     <div class="col-6 col-md-3">
-                        <input type="email" class="form-control" id="email" placeholder="Email cím" name="email"
+                        <input type="email" class="form-control" value="<%=email%>" id="email" placeholder="Email cím" name="email"
                             required>
                         <small class="form-text">Nem osszuk meg az email címedet senkivel.</small>
                     </div>
@@ -60,40 +57,23 @@
                         <label for="username" class="form-label">Felhasználónév:</label>
                     </div>
                     <div class="col-6 col-md-3">
-                        <input type="text" class="form-control" id="username" placeholder="Felhasználónév"
-                            name="username" required>
+                        <input type="text" class="form-control" value="<%=username%>" id="username" placeholder="Felhasználónév"
+                            name="username"required >
                     </div>
 
                 </div>
                 <div class="row">
-                    <div class="col-6 col-md-3">
+                    <div class="col-6 col-md-5">
                         <label for="password" class="form-label">Jelszó:</label>
                     </div>
-                    <div class="col-6 col-md-3">
-                        <input type="password" value="<%=password%>" class="form-control" id="password"
+                    <div class="col-6 col-md-5">
+                        <input type="password" value="" class="form-control" id="password"
                             placeholder="Jelszó" name="password" required>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <label for="password-again" class="form-label">Jelszó mégegyszer:</label>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <input type="password" value="<%=passwordAgain%>" class="form-control" id="password-again"
-                            placeholder="Jelszó mégegyszer" name="passwordAgain" required>
                     </div>
                 </div>
                 <div class="row last-row">
                     <div class="col">
-                        <div class="form-check text-start w-50 m-0 d-inline-block float-start">
-                            <input type="checkbox" class="form-check-input" id="aszf" name="aszf" required>
-                            <label class="form-check-label text-white" for="aszf">Elolvastam és elfogadom az ÁSZF-et és
-                                az Adatvédelmi tájékoztatót</label>
-                        </div>
-                        <div class="form-check text-start w-50 m-0 float-start">
-                            <input type="checkbox" class="form-check-input" id="letters" name="letters">
-                            <label class="form-check-label text-white" for="letters">Hírlevél feliratkozás</label>
-                        </div><br>
-                        <button type="submit" class="btn btn-search">Regisztráció</button><br>
-                        <small><a href="/user/login" class="link-light">Már regisztrált?</a></small>
+                        <button type="submit" class="btn btn-search">Módosítás</button>
                     </div>
                 </div>
             </form>

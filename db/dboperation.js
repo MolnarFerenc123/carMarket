@@ -148,17 +148,6 @@ async function SelectModelByMake() {
     });
 };
 
-async function SelectMinPrice() {
-    return new Promise((resolve, reject) => {
-        pool.query('SELECT MIN(ar) AS minAr FROM auto', (error, elements) => {
-            if (error) {
-                return reject(error);
-            }
-            return resolve(elements);
-        });
-    });
-};
-
 async function SelectMaxPrice() {
     return new Promise((resolve, reject) => {
         pool.query('SELECT MAX(ar) AS maxAr FROM auto', (error, elements) => {
@@ -209,6 +198,28 @@ async function NewUser(username, password, name, email, letters) {
         pool.query(`INSERT INTO users (username, password, name, email, jog, hirlevel)
         VALUES (?, titkosit(?), ?, ?, 1, ?);`,
             [username, password, name, email, letters], (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            });
+    });
+};
+
+async function AllUsers() {
+    return new Promise((resolve, reject) => {
+        pool.query(`SELECT * FROM users`, (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            });
+    });
+};
+
+async function SelectUser(userId) {
+    return new Promise((resolve, reject) => {
+        pool.query(`SELECT * FROM users WHERE id = ?`,userId, (error, elements) => {
                 if (error) {
                     return reject(error);
                 }
@@ -293,10 +304,10 @@ async function Filter(make, models, years, prices, conditions, colors, fuels, ty
             sql += ` AND a.modell IN (?)`
             toCheck.push(models);
         }
-        sql += ` AND a.ev BETWEEN ? AND ?`;
+        sql += ` AND (a.ev BETWEEN ? AND ?)`;
         toCheck.push(years[0]);
         toCheck.push(years[1]);
-        sql += ` AND a.ar BETWEEN ? AND ?`;
+        sql += ` AND (a.ar BETWEEN ? AND ?)`;
         toCheck.push(prices[0]);
         toCheck.push(prices[1]);
         if(conditions.length > 0){
@@ -335,7 +346,6 @@ async function Filter(make, models, years, prices, conditions, colors, fuels, ty
 };
 
 module.exports = {
-    SelectMinPrice: SelectMinPrice,
     SelectMaxPrice: SelectMaxPrice,
     SelectMinYear: SelectMinYear,
     SelectMaxYear: SelectMaxYear,
@@ -359,5 +369,7 @@ module.exports = {
     NewFavorite : NewFavorite,
     Favorites : Favorites,
     CheckFavorite : CheckFavorite,
-    RemoveFavorite: RemoveFavorite
+    RemoveFavorite: RemoveFavorite,
+    AllUsers : AllUsers,
+    SelectUser : SelectUser
 }
