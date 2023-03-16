@@ -1,6 +1,6 @@
 const make = document.getElementById("make");
 const modelList = document.getElementById("modelList");
-const dropDownButton = document.getElementById("dropdownMenuButton1");
+const dropDownButton = document.getElementById("dropdownMenuButtonModel");
 
 function filterModels(modelsWithMake) {
     modelList.innerHTML = "";
@@ -13,7 +13,7 @@ function filterModels(modelsWithMake) {
                 modelList.innerHTML += `<li>
             <span class="dropdown-item">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="`+item.modell+`" name="model"/>
+                    <input class="form-check-input" type="checkbox" value="`+item.modell+`" name="model" onchange="showSelected('`+item.modell+`', 'model')"/>
                     <label class="form-check-label">`+ item.modell + `</label>
                 </div>
             </span>

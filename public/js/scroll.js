@@ -20,7 +20,7 @@ const removeInfiniteScroll = () => {
 
 function appendContent(page){
   const divShowData = document.getElementById("hely");
-  myData = getData("/autok/"+page);
+  myData = getData("/cars/"+page);
   myData.then(result => {
     divShowData.innerHTML+=result;
   })

@@ -175,14 +175,14 @@
                             </div>
                             <%if(favourite){%>
                                 <div class="button-div">
-                                    <form action="/removeFavourite" method="POST">
+                                    <form action="/user/removeFavourite" method="POST">
                                         <input type="submit" value="Mégse kedvenc" class="favourites-button">
                                         <input type="text" style="display: none;" value="<%=list[0].id%>" name="carId">
                                     </form>
                                 </div>
                             <%}else{%>
                                 <div class="button-div">
-                                    <form action="/addFavourite" method="POST">
+                                    <form action="/user/addFavourite" method="POST">
                                         <input type="submit" value="Kedvencekhez adás" class="favourites-button">
                                         <input type="text" style="display: none;" value="<%=list[0].id%>" name="carId">
                                     </form>

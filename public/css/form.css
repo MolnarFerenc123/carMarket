@@ -32,6 +32,8 @@ form .dropdown-toggle {
     color: black;
     border: #850000 3px solid;
     width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 form .dropdown-toggle:hover {

@@ -8,7 +8,7 @@ var Db = require('../db/dboperation');
 var verify = require("../middleware/verifyModule");
 
 let loggedIn = false;
-let userName = "";
+let username = "";
 let permission = 0;
 
 let allPage = "";
@@ -37,7 +37,7 @@ router.get('/', async (req, res, next) => {
     loginPage = "";
     if (req.session.user_id) {
       loggedIn = true;
-      userName = req.session.name;
+      username = req.session.name;
       permission = req.session.jog;
     } else {
       loggedIn = false;
@@ -60,14 +60,14 @@ router.get('/', async (req, res, next) => {
       specials[i].indexkep = files[0];
     }
 
-    res.render('index', { specials: specials, loggedIn: loggedIn, permission : permission, userName: userName, allPage: allPage, searchPage: searchPage, loginPage: loginPage }); // template
+    res.render('index', { specials: specials, loggedIn: loggedIn, permission : permission, username: username, allPage: allPage, searchPage: searchPage, loginPage: loginPage }); // template
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
     res.sendStatus(500);
   }
 });
 
-router.get('/autok/:page', async (req, res, next) => {
+router.get('/cars/:page', async (req, res, next) => {
   try {
     let files;
     let okindex;
@@ -94,21 +94,21 @@ router.get('/autok/:page', async (req, res, next) => {
   }
 });
 
-router.get('/autok', async (req, res, next) => {
+router.get('/cars', async (req, res, next) => {
   try {
-    req.session.previousURL = "/autok";
+    req.session.previousURL = "/cars";
     allPage = "active";
     searchPage = "";
     loginPage = "";
     if (req.session.user_id) {
       loggedIn = true;
-      userName = req.session.name;
+      username = req.session.name;
       permission = req.session.jog;
     } else {
       loggedIn = false;
     }
     const resultElements = await Db.CountElements();
-    res.render('allList', { list: resultElements, loggedIn: loggedIn, permission : permission, userName: userName, allPage: allPage, searchPage: searchPage, loginPage: loginPage }); // template
+    res.render('allList', { list: resultElements, loggedIn: loggedIn, permission : permission, username: username, allPage: allPage, searchPage: searchPage, loginPage: loginPage }); // template
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
     res.sendStatus(500);
@@ -125,7 +125,7 @@ router.get('/search', async (req, res, next) => {
     loginPage = "";
     if (req.session.user_id) {
       loggedIn = true;
-      userName = req.session.name;
+      username = req.session.name;
       permission = req.session.jog;
     } else {
       loggedIn = false;
@@ -141,7 +141,7 @@ router.get('/search', async (req, res, next) => {
     const conditions = await Db.SelectAllCondition();
     const transmissions = await Db.SelectAllTransmission();
     const drives = await Db.SelectAllDrive();
-    res.render('search', { makes: makes, modelsWithMake: modelsWithMake, minYear: minYear[0], maxYear: maxYear[0], maxPrice: maxPrice[0], types: types, colors: colors, fuels: fuels, conditions: conditions, transmissions: transmissions, drives: drives, loggedIn: loggedIn, permission : permission, userName: userName, allPage: allPage, searchPage: searchPage, loginPage: loginPage });
+    res.render('search', { makes: makes, modelsWithMake: modelsWithMake, minYear: minYear[0], maxYear: maxYear[0], maxPrice: maxPrice[0], types: types, colors: colors, fuels: fuels, conditions: conditions, transmissions: transmissions, drives: drives, loggedIn: loggedIn, permission : permission, username: username, allPage: allPage, searchPage: searchPage, loginPage: loginPage });
   } catch (e) {
     console.log(e);
     res.sendStatus(500);
@@ -182,45 +182,6 @@ router.post('/search', async (req, res, next) => {
   }
 });
 
-router.post('/addFavourite', async (req, res, next) => {
-  try {
-    if (req.session.user_id) {
-      loggedIn = true;
-      userName = req.session.name;
-      await Db.NewFavorite(req.session.user_id, req.body.carId);
-      res.redirect(req.session.previousURL);
-    } else {
-      loggedIn = false;
-      req.session.previousURL = ("/car/" + req.body.carId)
-      res.redirect("/user/login");
-    } 
-  } catch (e) {
-    console.log(e);
-    res.sendStatus(500);
-  }
-});
-
-router.post('/removeFavourite', async (req, res, next) => {
-  try {
-    if (req.session.user_id) {
-      loggedIn = true;
-      userName = req.session.name;
-      permission = req.session.jog;
-      await Db.RemoveFavorite(req.session.user_id, req.body.carId);
-      res.redirect("/user/favourites");
-    } else {
-      loggedIn = false;
-      req.session.previousURL = ("/car/" + req.body.carId)
-      res.redirect("/user/login");
-    }
-
-
-  } catch (e) {
-    console.log(e);
-    res.sendStatus(500);
-  }
-});
-
 router.get('/car/:id', async (req, res, next) => {
   try {
     req.session.previousURL = "/car/" + req.params.id;
@@ -233,7 +194,7 @@ router.get('/car/:id', async (req, res, next) => {
     loginPage = "";
     if (req.session.user_id) {
       loggedIn = true;
-      userName = req.session.name;
+      username = req.session.name;
       permission = req.session.jog;
       const checkFavourite = await Db.CheckFavorite(req.session.user_id, carId);
       if(checkFavourite.length > 0){
@@ -252,7 +213,7 @@ router.get('/car/:id', async (req, res, next) => {
       }
     }
     car[0].ar = stringToMoney(car[0].ar);
-    res.render('car', { list: car, images: images, loggedIn: loggedIn, permission : permission, userName: userName, allPage: allPage, searchPage: searchPage, loginPage: loginPage, favourite : favourite });
+    res.render('car', { list: car, images: images, loggedIn: loggedIn, permission : permission, username: username, allPage: allPage, searchPage: searchPage, loginPage: loginPage, favourite : favourite });
   } catch (e) {
     console.log(e);
     res.sendStatus(500);
