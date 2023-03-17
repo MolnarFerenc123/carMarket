@@ -22,7 +22,7 @@
 <body>
     <%- include('navbar.ejs') %>
         <div class="flex-wrapper">
-            <form action="/user/registration" method="POST" onsubmit="return checkPassword(this)">
+            <form action="/user/edit" method="POST">
                 <div class="row">
                     <div class="col-12 col-md-12">
                         <label for="make" class="form-label">Adatok módosítása</label><br>
@@ -49,16 +49,16 @@
                         <label for="email" class="form-label">Email cím:</label>
                     </div>
                     <div class="col-6 col-md-3">
-                        <input type="email" class="form-control" value="<%=email%>" id="email" placeholder="Email cím" name="email"
-                            required>
+                        <input type="email" class="form-control" value="<%=email%>" id="email" placeholder="Email cím"
+                            name="email" required>
                         <small class="form-text">Nem osszuk meg az email címedet senkivel.</small>
                     </div>
                     <div class="col-6 col-md-3">
                         <label for="username" class="form-label">Felhasználónév:</label>
                     </div>
                     <div class="col-6 col-md-3">
-                        <input type="text" class="form-control" value="<%=username%>" id="username" placeholder="Felhasználónév"
-                            name="username"required >
+                        <input type="text" class="form-control" value="<%=usernameForm%>" id="username"
+                            placeholder="Felhasználónév" name="username" required>
                     </div>
 
                 </div>
@@ -67,8 +67,8 @@
                         <label for="password" class="form-label">Jelszó:</label>
                     </div>
                     <div class="col-6 col-md-5">
-                        <input type="password" value="" class="form-control" id="password"
-                            placeholder="Jelszó" name="password" required>
+                        <input type="password" value="" class="form-control" id="password" placeholder="Jelszó"
+                            name="password" required>
                     </div>
                 </div>
                 <div class="row last-row">

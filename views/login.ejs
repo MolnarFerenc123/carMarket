@@ -44,11 +44,35 @@
                 <div class="col">
                     <%if(loginError){%> 
                         <small>Hibás felhasználónév vagy jelszó</small><br>
+                        <b><a href="/user/reset-password" class="link-light">Elfelejtette a jelszavát?</a></b><br>
                     <%}%>
                     <button type="submit" class="btn btn-search">Bejelentkezés</button><br>
                     <small><a href="/user/registration" class="link-light">Még nem regisztrált?</a></small>
                 </div>
             </div>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+            </script>
+            <script type="text/javascript">
+                (function () {
+                    emailjs.init("6JdIh-W2Ey7BNcjAN");
+                })();
+            </script>
+            </script>
+            <script>
+                function sendEmail() {
+                    var templateParams = {
+                        to_name: 'Felhasználó',
+                        password: '123456789',
+                        to_mail: 'nfecoka4@gmail.com'
+                    };
+                    emailjs.send('carmarket_gmail_service', 'template_i4cmwzs', templateParams)
+                        .then(function (response) {
+                            console.log('SUCCESS!', response.status, response.text);
+                        }, function (error) {
+                            console.log('FAILED...', error);
+                        });
+                }
+            </script>
         </form>
         <%- include('footer.ejs') %>
     </div>

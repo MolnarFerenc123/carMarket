@@ -8,7 +8,11 @@ const session = require('express-session'); // munkamenet azonosításához
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var cors = require('cors')
+
 var app = express();
+
+app.use(cors());
 
 //session middleware
 const oneHour = 1000 * 60 * 60 ;

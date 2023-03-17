@@ -181,10 +181,56 @@ async function SelectMaxYear() {
     });
 };
 
+async function EditUser(name, email, username, id) {
+    return new Promise((resolve, reject) => {
+        pool.query('UPDATE users SET username = ?, email = ?, name = ? WHERE id = ?',
+            [username, email, name, id], (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            });
+    });
+};
+
 async function VerifyUser(username, password) {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM users where username=? and password=titkosit(?)',
             [username, password], (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            });
+    });
+};
+
+async function VerifyUserById(id, password) {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM users where id=? and password=titkosit(?)',
+            [id, password], (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            });
+    });
+};
+
+async function CheckEmail(email) {
+    return new Promise((resolve, reject) => {
+        pool.query(`SELECT * FROM users u WHERE u.email = ?`,[email], (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            });
+    });
+};
+
+async function NewPassword(email, password) {
+    return new Promise((resolve, reject) => {
+        pool.query(`UPDATE users SET password = titkosit(?) WHERE email = ?`,[password, email], (error, elements) => {
                 if (error) {
                     return reject(error);
                 }
@@ -363,9 +409,13 @@ module.exports = {
     SelectModelByMake: SelectModelByMake,
     SelectAllSpecial: SelectAllSpecial,
     NewUser: NewUser,
+    NewPassword : NewPassword,
     VerifyUser: VerifyUser,
+    VerifyUserById : VerifyUserById,
+    CheckEmail : CheckEmail,
     CheckUsed: CheckUsed,
     Filter: Filter,
+    EditUser : EditUser,
     NewFavorite : NewFavorite,
     Favorites : Favorites,
     CheckFavorite : CheckFavorite,
