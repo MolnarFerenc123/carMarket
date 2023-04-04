@@ -67,6 +67,27 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/cars', async (req, res, next) => {
+  try {
+    req.session.previousURL = "/cars";
+    allPage = "active";
+    searchPage = "";
+    loginPage = "";
+    if (req.session.user_id) {
+      loggedIn = true;
+      username = req.session.name;
+      permission = req.session.jog;
+    } else {
+      loggedIn = false;
+    }
+    const resultElements = await Db.CountElements();
+    res.render('allList', { list: resultElements, loggedIn: loggedIn, permission : permission, username: username, allPage: allPage, searchPage: searchPage, loginPage: loginPage }); // template
+  } catch (e) {
+    console.log(e); // console.log - Hiba esetén.
+    res.sendStatus(500);
+  }
+});
+
 router.get('/cars/:page', async (req, res, next) => {
   try {
     let files;
@@ -93,29 +114,6 @@ router.get('/cars/:page', async (req, res, next) => {
     res.sendStatus(500);
   }
 });
-
-router.get('/cars', async (req, res, next) => {
-  try {
-    req.session.previousURL = "/cars";
-    allPage = "active";
-    searchPage = "";
-    loginPage = "";
-    if (req.session.user_id) {
-      loggedIn = true;
-      username = req.session.name;
-      permission = req.session.jog;
-    } else {
-      loggedIn = false;
-    }
-    const resultElements = await Db.CountElements();
-    res.render('allList', { list: resultElements, loggedIn: loggedIn, permission : permission, username: username, allPage: allPage, searchPage: searchPage, loginPage: loginPage }); // template
-  } catch (e) {
-    console.log(e); // console.log - Hiba esetén.
-    res.sendStatus(500);
-  }
-});
-
-
 
 router.get('/search', async (req, res, next) => {
   try {

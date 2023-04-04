@@ -6,7 +6,7 @@ const yearStartInput = document.getElementById("yearStartInput");
 const yearEndInput = document.getElementById("yearEndInput");
 const yearStartText = document.getElementById("yearStartText");
 
-yearStartRange.addEventListener('change', function () {
+yearStartRange.addEventListener('input', function () {
     if (Number(yearStartRange.value) > Number(yearEndInput.value)) {
         yearStartRange.value = yearEndInput.value;
     }
@@ -29,13 +29,13 @@ yearStartRange.addEventListener('change', function () {
         }
     }
 });
-yearEndRange.addEventListener('change', function () {
+yearEndRange.addEventListener('input', function () {
     if (Number(yearEndRange.value) < Number(yearStartInput.value)) {
         yearEndRange.value = yearStartInput.value;
     }
     yearEndInput.value = yearEndRange.value;
 });
-yearStartInput.addEventListener('change', function () {
+yearStartInput.addEventListener('input', function () {
     if (Number(yearStartInput.value) > Number(yearEndInput.value)) {
         yearStartInput.value = yearEndInput.value;
     }
@@ -47,7 +47,7 @@ yearStartInput.addEventListener('change', function () {
     }
     yearStartRange.value = yearStartInput.value;
 });
-yearEndInput.addEventListener('change', function () {
+yearEndInput.addEventListener('input', function () {
     if (Number(yearEndInput.value) < Number(yearStartInput.value)) {
         yearEndInput.value = yearStartInput.value;
     }
@@ -67,19 +67,19 @@ const priceEndRange = document.getElementById("priceEndRange");
 const priceStartInput = document.getElementById("priceStartInput");
 const priceEndInput = document.getElementById("priceEndInput");
 
-priceStartRange.addEventListener('change', function () {
+priceStartRange.addEventListener('input', function () {
     if (Number(priceStartRange.value) > Number(priceEndInput.value)) {
         priceStartRange.value = priceEndInput.value;
     }
     priceStartInput.value = priceStartRange.value;
 });
-priceEndRange.addEventListener('change', function () {
+priceEndRange.addEventListener('input', function () {
     if (Number(priceEndRange.value) < Number(priceStartInput.value)) {
         priceEndRange.value = priceStartInput.value;
     }
     priceEndInput.value = priceEndRange.value;
 });
-priceStartInput.addEventListener('change', function () {
+priceStartInput.addEventListener('input', function () {
     if (Number(priceStartInput.value) > Number(priceEndInput.value)) {
         priceStartInput.value = priceEndInput.value;
     }
@@ -91,7 +91,7 @@ priceStartInput.addEventListener('change', function () {
     }
     priceStartRange.value = priceStartInput.value;
 });
-priceEndInput.addEventListener('change', function () {
+priceEndInput.addEventListener('input', function () {
     if (Number(priceEndInput.value) < Number(priceStartInput.value)) {
         priceEndInput.value = priceStartInput.value;
     }

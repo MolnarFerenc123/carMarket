@@ -128,11 +128,6 @@ router.get('/profile', async function (req, res, next) {
   }
 });
 
-router.get('/logout', function (req, res, next) {
-  req.session.destroy();
-  res.redirect('/');
-});
-
 router.get('/favourites', async (req, res, next) => {
   try {
     let files;
@@ -294,5 +289,12 @@ router.post('/reset-password', async function (req, res, next) {
     res.render('emailSent', { email: email, loggedIn: false, allPage: allPage, searchPage: searchPage, loginPage: loginPage });
   }
 });
+
+
+router.get('/logout', function (req, res, next) {
+  req.session.destroy();
+  res.redirect('/');
+});
+
 
 module.exports = router;
