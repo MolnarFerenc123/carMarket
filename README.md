@@ -79,7 +79,7 @@ const options = {
 }
 ```
 
-![Figure 1](media/image1.png)
+![Figure 1](readme/figure1.png)
 
 ### Layers and Responsibilities
 
@@ -372,11 +372,11 @@ The system consists of two main modules:
      - Favorites
    - **Application Operation**:
      - When you start the application, a login window will pop up. Here you must enter your username and password. If you log in successfully, the window will close.
-![Figure 5](media/image5.png)     
+![Figure 5](readme/figure5.png)     
      - In the application, you can view all tables in the database by navigating in the menu bar. When you open the Master Data tab, all tables are displayed.
-![Figure 5](media/image5.png)     
+![Figure 5](readme/figure5.png)     
      - Among the many tables, the administrator can make changes in the Cars table.
-![Figure 5](media/image5.png)
+![Figure 5](readme/figure5.png)
      - If you select a new car in the list, all of its images will be displayed above. Images can be deleted using the Delete Image button, or new images can be uploaded using the New Image button. You can select and upload multiple images at once. You can modify the data of the selected car in the menu on the right.
      - It is also possible to filter in the small menu above the list. After setting the appropriate values and pressing the Filter button, only cars that meet the conditions will be displayed in the list.
      - You can print the cars in the list by clicking the blue button in the menu bar.
@@ -422,7 +422,7 @@ Each car has an index image and additional higher-resolution images.
 
 **ERD Diagram**:
 
-![Figure 5](media/image5.png)
+![Figure 5](readme/figure5.png)
 
 **Tables**:
 
@@ -527,7 +527,7 @@ To open the website, first open a browser (Google Chrome, Mozilla Firefox, Brave
 
 The home page contains the company's current special offers. You can also browse through them. They can be moved left and right by clicking on the two arrows. If you click on a car, you will be able to view its profile page. In addition, the home page has a navigation bar at the top.
 
-![Figure 6](media/image6.png)
+![Figure 6](readme/figure6.png)
 
 #### Navigation Bar:
 
@@ -541,27 +541,27 @@ The navigation bar accompanies you throughout all pages. On the left side, you c
   - **My Data**: You can view all your personal data and modify it.
   - **Log Out**: Logs you out of your account.
 
-![Figure 7](media/image7.png)  
-![Figure 8](media/image8.png)
+![Figure 7](readme/figure7.png)  
+![Figure 8](readme/figure8.png)
 
 #### Footer:
 
 The **footer** at the bottom of the page is the same on every page. The footer contains various information about the company, such as contact information. You can also find the company's other pages: Facebook, YouTube, Instagram. These are all links, which when clicked on will open the website in a new window.
 
-![Figure 9](media/image9.png)
+![Figure 9](readme/figure9.png)
 
 #### All:
 
 If you click on the "All" box in the navigation bar, you can view every car the company has for sale. The cars are arranged in rows of 3 cars per row. The cars are loaded in increments of 30, and the next 30 are loaded as you scroll down the page until you reach the last car. Each car has its own card, which contains only the most important information: manufacturer, model, price, mileage, year. There is also a picture of each car, and at the bottom of the card, there is a "View" button. The "View" button opens the car's data sheet, where you can find more information about the cars.
 
-![Figure 10](media/image10.png)
+![Figure 10](readme/figure10.png)
 
 #### Car Data Sheet:
 
 If you click on the "View" button, the car's data sheet will open. This page now has much more information about the cars, everything in fact. Here, not just one, but several images of the vehicle are displayed, which can be scrolled left and right using the white arrows. On the right side, the car's properties are listed: manufacturer, model, price, year, condition, version, chassis number, mileage, color, fuel type, number of cylinder heads, drive, transmission type. Furthermore, at the bottom right, you will find a red "Add to Favorites" button. For the button to work, you must be logged in. If you are not logged in, the page will redirect you to the login window. If you are logged in, the car has been successfully added to your favorites. In this case, the button will change to "Cancel Favorites". If you click the button labeled "Unfavorite", the car will be removed from your favorites and the button will be labeled "Add to Favorites" again.
 
-![Figure 11](media/image11.png)  
-![Figure 12](media/image12.png)
+![Figure 11](readme/figure11.png)  
+![Figure 12](readme/figure12.png)
 
 #### Search:
 
@@ -580,20 +580,20 @@ If you clicked on the "Search" menu in the navigation bar, you can search/filter
 
 Once you have selected all the criteria you want, click on the button labeled "Search". Once you have clicked on it, all the cars that match the criteria you have set will appear at the bottom of the page. The cars will be displayed in the same way as in the "All" menu.
 
-![Figure 13](media/image13.png)
+![Figure 13](readme/figure13.png)
 
 #### Login:
 
 If you click on the button labeled "Login" in the navigation bar, the window where you can log in will open. There are 2 fields: "Username" and "Password". Enter your username and password in the fields, then click on the button labeled "Login". If you do not have a user account yet, click on the link labeled "Not registered yet?"
 
-![Figure 14](media/image14.png)
+![Figure 14](readme/figure14.png)
 
 #### Forgot Password:
 
 After an incorrect login, a link will appear on the login tab with the text: "Forgot your password?". By clicking this button, you will be redirected to another interface, where after entering the email address associated with the account, clicking the "Send" button will send a newly generated password to the provided email address. If you enter an email address that is not registered, you will receive an error message saying "Such an email address is not registered."
 
-![Figure 15](media/image15.png)  
-![Figure 16](media/image16.png)
+![Figure 15](readme/figure15.png)  
+![Figure 16](readme/figure16.png)
 
 #### Registration:
 
@@ -612,7 +612,7 @@ Once you have filled in all the fields, press the "Register" button. Registratio
 
 If you already have an account and would like to log in, click on the "Already registered" link at the bottom of the form, which will redirect you to the login page.
 
-![Figure 17](media/image17.png)
+![Figure 17](readme/figure17.png)
 
 #### Favorites:
 
@@ -622,13 +622,13 @@ This submenu is only available if you are already logged in. All cars you have a
 
 This submenu is only available if you are already logged in. Here you can find all the information related to your user account (name, username, email address, account creation date, newsletter subscription). You can change this information by clicking on the "Change data" button.
 
-![Figure 18](media/image18.png)
+![Figure 18](readme/figure18.png)
 
 #### Change Data:
 
 If you clicked on the "Change data" button, a form will appear where you can change the following data: last name, first name, email address, username. To change it, you must enter your password. If you have entered the correct data, press the "Change" button, and if you have entered the password correctly and the email address and username are not taken, the data change is successful.
 
-![Figure 19](media/image19.png)
+![Figure 19](readme/figure19.png)
 
 #### Logout:
 
@@ -644,7 +644,7 @@ If you are logged in as an administrator, a new submenu appears between "My Info
 
 By clicking on this menu, you can view the data of all registered users. The only information missing is the password, as it is stored encrypted.
 
-![Figure 20](media/image20.png)
+![Figure 20](readme/figure20.png)
 
 ---
 
