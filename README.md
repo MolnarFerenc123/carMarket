@@ -372,11 +372,11 @@ The system consists of two main modules:
      - Favorites
    - **Application Operation**:
      - When you start the application, a login window will pop up. Here you must enter your username and password. If you log in successfully, the window will close.
-![Figure 5](readme/figure5.png)     
+![Figure 5](readme/figure2.png)     
      - In the application, you can view all tables in the database by navigating in the menu bar. When you open the Master Data tab, all tables are displayed.
-![Figure 5](readme/figure5.png)     
+![Figure 5](readme/figure3.png)     
      - Among the many tables, the administrator can make changes in the Cars table.
-![Figure 5](readme/figure5.png)
+![Figure 5](readme/figure4.png)
      - If you select a new car in the list, all of its images will be displayed above. Images can be deleted using the Delete Image button, or new images can be uploaded using the New Image button. You can select and upload multiple images at once. You can modify the data of the selected car in the menu on the right.
      - It is also possible to filter in the small menu above the list. After setting the appropriate values and pressing the Filter button, only cars that meet the conditions will be displayed in the list.
      - You can print the cars in the list by clicking the blue button in the menu bar.
