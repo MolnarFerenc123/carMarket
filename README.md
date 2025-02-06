@@ -576,4 +576,202 @@ If you clicked on the "Search" menu in the navigation bar, you can search/filter
 - **Fuel**: If you open the list, all fuel types will be displayed. As with the model, you can select more than one. To select the states, you need to check the box to the left of the state name with a single click. If you do not select any, all fuels will be entered into the search.
 - **Design**: If you open the list, all available designs will be displayed. As with the model, you can select more than one. To select designs, you need to check the box to the left of the design name with a single click. If you do not select any, all designs will be entered into the search.
 - **Transmission**: If you open the list, all available transmission types will be displayed. As with the model, you can select more than one. To select the transmissions, you need to check the box to the left of the transmission type name with a single click. If you do not select any, the search will return all cars with that transmission type.
-- **Drive**: If you openencies, and hardware requirements for both the desktop and web applications.
+- **Drive**: If you open the list, all available drives will be displayed. As with the model, you can select more than one. To select drives, you need to check the box to the left of the drive name with a single click. If you do not select any, all drives will be entered in the search.
+
+Once you have selected all the criteria you want, click on the button labeled "Search". Once you have clicked on it, all the cars that match the criteria you have set will appear at the bottom of the page. The cars will be displayed in the same way as in the "All" menu.
+
+![Figure 13](media/image13.png)
+
+#### Login:
+
+If you click on the button labeled "Login" in the navigation bar, the window where you can log in will open. There are 2 fields: "Username" and "Password". Enter your username and password in the fields, then click on the button labeled "Login". If you do not have a user account yet, click on the link labeled "Not registered yet?"
+
+![Figure 14](media/image14.png)
+
+#### Forgot Password:
+
+After an incorrect login, a link will appear on the login tab with the text: "Forgot your password?". By clicking this button, you will be redirected to another interface, where after entering the email address associated with the account, clicking the "Send" button will send a newly generated password to the provided email address. If you enter an email address that is not registered, you will receive an error message saying "Such an email address is not registered."
+
+![Figure 15](media/image15.png)  
+![Figure 16](media/image16.png)
+
+#### Registration:
+
+The registration window contains several fields:
+
+- **Last name**: Enter your last name. This field is required.
+- **First name**: Enter your first name. This field is required.
+- **Email address**: Enter your email address. This field is required.
+- **Username**: Come up with a username for yourself and then enter it. This field is required.
+- **Password**: Create a password for yourself and enter it. The password must be at least 8 characters long. This field is required.
+- **Password again**: Enter the password you created again. Registration will only be successful if the two passwords match. This field is required.
+- **I have read and accept the Terms and Conditions and Privacy Policy**: Checking this box is mandatory. By doing so, you accept the Terms and Conditions and Privacy Policy.
+- **Newsletter subscription**: Check this box if you would like to receive newsletters from the site to your email account. (Sending newsletters will be a later feature on the website).
+
+Once you have filled in all the fields, press the "Register" button. Registration will only be successful if neither the username nor the email address is already in use by another user, and the two passwords entered are the same and at least 8 characters long. After that, the site will successfully log you in and you can access the new features.
+
+If you already have an account and would like to log in, click on the "Already registered" link at the bottom of the form, which will redirect you to the login page.
+
+![Figure 17](media/image17.png)
+
+#### Favorites:
+
+This submenu is only available if you are already logged in. All cars you have added to your favorites are displayed here, just like in the "All" menu.
+
+#### My Details:
+
+This submenu is only available if you are already logged in. Here you can find all the information related to your user account (name, username, email address, account creation date, newsletter subscription). You can change this information by clicking on the "Change data" button.
+
+![Figure 18](media/image18.png)
+
+#### Change Data:
+
+If you clicked on the "Change data" button, a form will appear where you can change the following data: last name, first name, email address, username. To change it, you must enter your password. If you have entered the correct data, press the "Change" button, and if you have entered the password correctly and the email address and username are not taken, the data change is successful.
+
+![Figure 19](media/image19.png)
+
+#### Logout:
+
+By clicking this button, you will log out of the user's account.
+
+---
+
+### Administrator:
+
+If you are logged in as an administrator, a new submenu appears between "My Info" and "Log Out": "User Accounts".
+
+#### User Accounts:
+
+By clicking on this menu, you can view the data of all registered users. The only information missing is the password, as it is stored encrypted.
+
+![Figure 20](media/image20.png)
+
+---
+
+## Resources
+
+### Database:
+
+The database was downloaded from [kaggle.com](https://kaggle.com) and modified to suit the project's needs.
+
+### Concepts:
+
+- **HTML5**: [https://hu.wikipedia.org/wiki/HTML](https://hu.wikipedia.org/wiki/HTML)
+- **express**: [https://expressjs.com/](https://expressjs.com/)
+- **express-session**: [https://www.section.io/engineering-education/session-management-in-nodejs-using-expressjs-and-express-session/](https://www.section.io/engineering-education/session-management-in-nodejs-using-expressjs-and-express-session/)
+- **cookie-parser**: [https://www.tutorialspoint.com/expressjs/expressjs_cookies.htm](https://www.tutorialspoint.com/expressjs/expressjs_cookies.htm)
+- **ejs**: [https://ejs.co/](https://ejs.co/)
+- **morgan**: [https://www.npmjs.com/package/morgan](https://www.npmjs.com/package/morgan)
+- **MySQL**: [https://hu.wikipedia.org/wiki/MySQL](https://hu.wikipedia.org/wiki/MySQL)
+
+### Pictures:
+
+All images were downloaded from Google Image Search.
+
+### Program Details:
+
+The class for printing the DataGridView was downloaded from [https://www.codeproject.com/Articles/18042/Another-DataGridView-Printer](https://www.codeproject.com/Articles/18042/Another-DataGridView-Printer) and modified for use in this project.
+
+---Sure! Let's continue from where we left off:
+
+---
+
+#### Search (continued):
+
+- **Drive**: If you open the list, all available drives will be displayed. As with the model, you can select more than one. To select drives, you need to check the box to the left of the drive name with a single click. If you do not select any, all drives will be entered in the search.
+
+Once you have selected all the criteria you want, click on the button labeled "Search". Once you have clicked on it, all the cars that match the criteria you have set will appear at the bottom of the page. The cars will be displayed in the same way as in the "All" menu.
+
+![Figure 13](media/image13.png)
+
+#### Login:
+
+If you click on the button labeled "Login" in the navigation bar, the window where you can log in will open. There are 2 fields: "Username" and "Password". Enter your username and password in the fields, then click on the button labeled "Login". If you do not have a user account yet, click on the link labeled "Not registered yet?"
+
+![Figure 14](media/image14.png)
+
+#### Forgot Password:
+
+After an incorrect login, a link will appear on the login tab with the text: "Forgot your password?". By clicking this button, you will be redirected to another interface, where after entering the email address associated with the account, clicking the "Send" button will send a newly generated password to the provided email address. If you enter an email address that is not registered, you will receive an error message saying "Such an email address is not registered."
+
+![Figure 15](media/image15.png)  
+![Figure 16](media/image16.png)
+
+#### Registration:
+
+The registration window contains several fields:
+
+- **Last name**: Enter your last name. This field is required.
+- **First name**: Enter your first name. This field is required.
+- **Email address**: Enter your email address. This field is required.
+- **Username**: Come up with a username for yourself and then enter it. This field is required.
+- **Password**: Create a password for yourself and enter it. The password must be at least 8 characters long. This field is required.
+- **Password again**: Enter the password you created again. Registration will only be successful if the two passwords match. This field is required.
+- **I have read and accept the Terms and Conditions and Privacy Policy**: Checking this box is mandatory. By doing so, you accept the Terms and Conditions and Privacy Policy.
+- **Newsletter subscription**: Check this box if you would like to receive newsletters from the site to your email account. (Sending newsletters will be a later feature on the website).
+
+Once you have filled in all the fields, press the "Register" button. Registration will only be successful if neither the username nor the email address is already in use by another user, and the two passwords entered are the same and at least 8 characters long. After that, the site will successfully log you in and you can access the new features.
+
+If you already have an account and would like to log in, click on the "Already registered" link at the bottom of the form, which will redirect you to the login page.
+
+![Figure 17](media/image17.png)
+
+#### Favorites:
+
+This submenu is only available if you are already logged in. All cars you have added to your favorites are displayed here, just like in the "All" menu.
+
+#### My Details:
+
+This submenu is only available if you are already logged in. Here you can find all the information related to your user account (name, username, email address, account creation date, newsletter subscription). You can change this information by clicking on the "Change data" button.
+
+![Figure 18](media/image18.png)
+
+#### Change Data:
+
+If you clicked on the "Change data" button, a form will appear where you can change the following data: last name, first name, email address, username. To change it, you must enter your password. If you have entered the correct data, press the "Change" button, and if you have entered the password correctly and the email address and username are not taken, the data change is successful.
+
+![Figure 19](media/image19.png)
+
+#### Logout:
+
+By clicking this button, you will log out of the user's account.
+
+---
+
+### Administrator:
+
+If you are logged in as an administrator, a new submenu appears between "My Info" and "Log Out": "User Accounts".
+
+#### User Accounts:
+
+By clicking on this menu, you can view the data of all registered users. The only information missing is the password, as it is stored encrypted.
+
+![Figure 20](media/image20.png)
+
+---
+
+## Resources
+
+### Database:
+
+The database was downloaded from [kaggle.com](https://kaggle.com) and modified to suit the project's needs.
+
+### Concepts:
+
+- **HTML5**: [https://hu.wikipedia.org/wiki/HTML](https://hu.wikipedia.org/wiki/HTML)
+- **express**: [https://expressjs.com/](https://expressjs.com/)
+- **express-session**: [https://www.section.io/engineering-education/session-management-in-nodejs-using-expressjs-and-express-session/](https://www.section.io/engineering-education/session-management-in-nodejs-using-expressjs-and-express-session/)
+- **cookie-parser**: [https://www.tutorialspoint.com/expressjs/expressjs_cookies.htm](https://www.tutorialspoint.com/expressjs/expressjs_cookies.htm)
+- **ejs**: [https://ejs.co/](https://ejs.co/)
+- **morgan**: [https://www.npmjs.com/package/morgan](https://www.npmjs.com/package/morgan)
+- **MySQL**: [https://hu.wikipedia.org/wiki/MySQL](https://hu.wikipedia.org/wiki/MySQL)
+
+### Pictures:
+
+All images were downloaded from Google Image Search.
+
+### Program Details:
+
+The class for printing the DataGridView was downloaded from [https://www.codeproject.com/Articles/18042/Another-DataGridView-Printer](https://www.codeproject.com/Articles/18042/Another-DataGridView-Printer) and modified for use in this project.
+
+---
